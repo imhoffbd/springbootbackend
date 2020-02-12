@@ -2,9 +2,6 @@ buildscript {
 	repositories {
 		mavenCentral()
 	}
-	dependencies {
-		classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.1.RELEASE'
-	}
 }
 
 plugins {
@@ -14,8 +11,6 @@ plugins {
 	id 'java'
 	id 'war'
 }
-
-apply plugin: 'spring-cloud-contract'
 
 group = 'de.itconsultingimhoff.testprojects'
 version = '0.0.1-SNAPSHOT'
@@ -37,7 +32,6 @@ repositories {
 
 ext {
 	set('snippetsDir', file("build/generated-snippets"))
-	set('springCloudVersion', "Hoxton.SR1")
 }
 
 dependencies {
@@ -67,8 +61,6 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
 	implementation 'org.springframework.data:spring-data-rest-hal-browser'
 	implementation 'org.springframework.kafka:spring-kafka'
-	implementation 'org.springframework.session:spring-session-data-redis'
-	implementation 'org.springframework.session:spring-session-jdbc'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -81,8 +73,6 @@ dependencies {
 	testImplementation 'com.unboundid:unboundid-ldapsdk'
 	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	testImplementation 'org.springframework.amqp:spring-rabbit-test'
-	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
-	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
 	testImplementation 'org.springframework.integration:spring-integration-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
@@ -90,13 +80,6 @@ dependencies {
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
-
-contracts {
-	targetFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
 }
 
 test {
