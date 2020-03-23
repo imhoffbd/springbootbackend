@@ -10,6 +10,6 @@ import java.util.List;
 public class DummyController {
     @GetMapping("/dummies")
     List<String> all() {
-        return Arrays.asList("foo", "bar");
+        return Arrays.asList("foo", "bar", "baz");
     }
 }

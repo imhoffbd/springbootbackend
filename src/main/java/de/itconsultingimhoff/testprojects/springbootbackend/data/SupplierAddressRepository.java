@@ -6,8 +6,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "supplier", path = "supplier")
-interface SupplierRepository extends JpaRepository<Supplier, String> {
+@RepositoryRestResource(collectionResourceRel = "supplierAddress", path = "supplierAddress")
+interface SupplierAddressRepository extends JpaRepository<SupplierAddress, String> {
 
-    List<Supplier> findByName(@Param("name") String name);
+    List<SupplierAddress> findByName(@Param("name") String name);
 }
