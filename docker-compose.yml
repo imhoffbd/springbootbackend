@@ -1,0 +1,19 @@
+version: '3'
+services:
+  database:
+    image: 'mongo'
+    container_name: 'mongo-container'
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017:27017'
+
+  app:
+    image: 'mytest/springbootbackend'
+    container_name: 'springbootbackend-container'
+    environment:
+      - mongodb.connectstring=mongodb://database:27017/
+    ports:
+      - '8080:8080'
+    links:
+      - database
