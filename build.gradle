@@ -70,12 +70,12 @@ dependencies {
 //    implementation('org.springframework.boot:spring-boot-starter-mail') { because '' }
 //    implementation('org.springframework.boot:spring-boot-starter-oauth2-client') { because '' }
 //    implementation('org.springframework.boot:spring-boot-starter-quartz') { because '' }
-    implementation('org.springframework.boot:spring-boot-starter-security') {
-        because 'Core security'
-    }
-    implementation('com.auth0:java-jwt:3.4.0') {
-        because 'JWT class'
-    }
+//    implementation('org.springframework.boot:spring-boot-starter-security') {
+//        because 'Core security'
+//    }
+//    implementation('com.auth0:java-jwt:3.4.0') {
+//        because 'JWT class'
+//    }
 //    implementation('org.springframework.boot:spring-boot-starter-web') { because '' }
 //    implementation('org.springframework.boot:spring-boot-starter-websocket') { because '' }
 //    implementation('org.apache.kafka:kafka-streams') { because '' }
@@ -98,7 +98,7 @@ dependencies {
     testImplementation 'org.springframework.integration:spring-integration-test'
 //    testImplementation 'org.springframework.kafka:spring-kafka-test'
 //    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-    testImplementation 'org.springframework.security:spring-security-test'
+//    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 // empty config ??
