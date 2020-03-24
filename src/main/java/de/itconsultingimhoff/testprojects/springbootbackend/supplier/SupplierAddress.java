@@ -1,22 +1,18 @@
-package de.itconsultingimhoff.testprojects.springbootbackend.data;
+package de.itconsultingimhoff.testprojects.springbootbackend.supplier;
 
 import lombok.Data;
-import lombok.ToString;
-
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Entity
-@Table(name = "supplier_address")
-class SupplierAddress {
+@Document(collection = "supplierAddress")
+public class SupplierAddress {
 
     @Id
     private String supplierAddressId;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Supplier supplier;
-
+    @Indexed
     private String name;
 
     private String street;

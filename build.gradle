@@ -54,12 +54,12 @@ dependencies {
 //		because 'Supports caching via @Cacheable annotation'
 //	}
     //implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    //implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     //implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation('org.springframework.boot:spring-boot-starter-data-rest') {
-        because 'Adding data REST endpoints'
-    }
+//    implementation('org.springframework.boot:spring-boot-starter-data-rest') {
+//        because 'Adding data REST endpoints'
+//    }
     implementation('org.springframework.boot:spring-boot-starter-hateoas') {
 		because 'Adding HATEOAS via ResourceSupport base class and ResourceSupport'
 	}
@@ -70,7 +70,12 @@ dependencies {
 //    implementation('org.springframework.boot:spring-boot-starter-mail') { because '' }
 //    implementation('org.springframework.boot:spring-boot-starter-oauth2-client') { because '' }
 //    implementation('org.springframework.boot:spring-boot-starter-quartz') { because '' }
-//    implementation('org.springframework.boot:spring-boot-starter-security') { because '' }
+    implementation('org.springframework.boot:spring-boot-starter-security') {
+        because 'Core security'
+    }
+    implementation('com.auth0:java-jwt:3.4.0') {
+        because 'JWT class'
+    }
 //    implementation('org.springframework.boot:spring-boot-starter-web') { because '' }
 //    implementation('org.springframework.boot:spring-boot-starter-websocket') { because '' }
 //    implementation('org.apache.kafka:kafka-streams') { because '' }
@@ -80,7 +85,7 @@ dependencies {
 //    implementation('org.springframework.kafka:spring-kafka') { because '' }
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'mysql:mysql-connector-java'
+    //runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'

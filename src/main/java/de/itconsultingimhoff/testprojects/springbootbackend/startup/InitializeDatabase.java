@@ -1,5 +1,8 @@
-package de.itconsultingimhoff.testprojects.springbootbackend.data;
+package de.itconsultingimhoff.testprojects.springbootbackend.startup;
 
+import de.itconsultingimhoff.testprojects.springbootbackend.supplier.Supplier;
+import de.itconsultingimhoff.testprojects.springbootbackend.supplier.SupplierAddress;
+import de.itconsultingimhoff.testprojects.springbootbackend.supplier.SupplierRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -7,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
-class LoadDatabase {
+class InitializeDatabase {
 
     @Bean
     CommandLineRunner initDatabase(SupplierRepository repository) {

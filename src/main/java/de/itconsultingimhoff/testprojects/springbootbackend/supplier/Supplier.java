@@ -1,26 +1,23 @@
-package de.itconsultingimhoff.testprojects.springbootbackend.data;
+package de.itconsultingimhoff.testprojects.springbootbackend.supplier;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity
-@Table(name = "supplier")
-class Supplier {
+@Document(collection = "supplier")
+public class Supplier {
 
     @Id
     private String supplierId;
 
-    @OneToMany(
-            mappedBy = "supplier",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
     private List<SupplierAddress> supplierAddresses = new ArrayList<>();
 
+    @Indexed
     private String name;
 
     public Supplier() {
@@ -33,11 +30,9 @@ class Supplier {
 
     public void addSupplierAddress(SupplierAddress supplierAddress) {
         supplierAddresses.add(supplierAddress);
-        supplierAddress.setSupplier(this);
     }
 
     public void removeSupplierAddress(SupplierAddress supplierAddress) {
         supplierAddresses.remove(supplierAddress);
-        supplierAddress.setSupplier(null);
     }
 }
