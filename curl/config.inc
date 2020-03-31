@@ -1,5 +1,0 @@
-
-# testing local
-HOST=localhost
-PORT=8080
-

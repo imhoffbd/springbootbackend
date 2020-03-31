@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-source config.inc
-
 EXT=""
-if [ $# -gt 1  ]; then
-  EXT="/$2"
+if [ $# -gt 0  ]; then
+  EXT="/$1"
 fi
 
-curl -i http://10.211.55.5:31000/supplier
+curl -i http://10.211.55.5:31000/supplier$EXT
