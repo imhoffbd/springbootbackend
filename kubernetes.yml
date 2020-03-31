@@ -1,0 +1,104 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mongo-persistent-storage1
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/data01"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mongo-persistent-storage1-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: mongo
+  name: mongo-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mongo
+    spec:
+      containers:
+        - image: mongo
+          name: mongo
+          ports:
+            - name: mongo
+              containerPort: 27017
+              hostPort: 27017
+          volumeMounts:
+            - name: mongo-persistent-storage1
+              mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage1
+          persistentVolumeClaim:
+            claimName: mongo-persistent-storage1-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mongo
+  name: mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    name: mongo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-backend
+  template:
+    metadata:
+      labels:
+        app: spring-boot-backend
+    spec:
+      containers:
+        - image: imhoffbd/springbootbackend
+          name: spring-boot-backend
+          env:
+            - name: mongodb.connectstring
+              value: mongodb://mongo:27017/
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-backend
+  labels:
+    run: spring-boot-backend
+spec:
+  ports:
+    - port: 8080
+      nodePort: 31000
+  selector:
+    app: spring-boot-backend
+  type: NodePort

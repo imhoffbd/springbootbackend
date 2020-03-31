@@ -9,7 +9,7 @@ services:
       - '27017:27017'
 
   app:
-    image: 'mytest/springbootbackend'
+    image: 'imhoffbd/springbootbackend'
     container_name: 'springbootbackend-container'
     environment:
       - mongodb.connectstring=mongodb://database:27017/
