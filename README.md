@@ -9,3 +9,5 @@ Problems:
 Offene Punkte:
   * hostPath des PersistentVolume muss **manuell** in MiniKube angelegt werden -> Wie automatisieren?? 
   * Best practice für Anwendung der Config-Änderung??
+
+## Lösungen
