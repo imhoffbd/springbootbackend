@@ -35,4 +35,13 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build bootJar
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: Springboot Jar
+        # Directory containing files to upload
+        path: build/libs/springbootbackend-0.0.1-SNAPSHOT.jar
+        
